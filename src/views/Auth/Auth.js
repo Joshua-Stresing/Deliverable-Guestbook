@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../hooks/useAuth';
 import { signInUser, signUpUser } from '../../services/user';
 
 import './Auth.css';
 
-export default function Auth({ setCurrentUser }) {
+export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [signInUp, setSignInUp] = useState('Sign-In');
+
+  const { setCurrentUser } = useAuth();
 
   const history = useHistory();
-
-  const [signInUp, setSignInUp] = useState('Sign-In');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
